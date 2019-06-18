@@ -36,6 +36,7 @@ namespace UniDonors
             services.AddSingleton<IRepository<Donor>, DonorMemoryRepository>();
             services.AddSingleton<IRepository<Organization>, OrganizationMemoryRepository>();
             services.AddSingleton<IRepository<DonorOrganization>, DonorOrganizationMemoryRepository>();
+            services.AddSingleton<IRepository<Event>, EventMemoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

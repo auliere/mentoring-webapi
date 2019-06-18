@@ -2,40 +2,33 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GenFu;
 using UniDonors.Models;
 
 namespace UniDonors.Repositories
 {
     public class DonorMemoryRepository : IRepository<Donor>
     {
-        private List<Donor> donors = new List<Donor>
+        private static List<Donor> donors;
+
+        public DonorMemoryRepository()
         {
-            new Donor
-            {
-                Id = 1,
-                BirthDate = new DateTime(1995, 8, 8),
-                IsEligible = true,
-                BloodType = BloodTypeEnum.O,
-                RhesusType = RhesusTypeEnum.Negative,
-                FirstName = "Oleh",
-                LastName = "Pedorenko",
-                Email = "oleh.pedorenko@gmail.com",
-                DonorType = DonorTypeEnum.Student
-            },
-            new Donor
-            {
-                Id = 2,
-                BirthDate = new DateTime(1995, 10, 8),
-                IsEligible = true,
-                BloodType = BloodTypeEnum.O,
-                RhesusType = RhesusTypeEnum.Positive,
-                FirstName = "Olexiy",
-                LastName = "Demidenko",
-                MiddleName = "Oleksandrovich",
-                Email = "oleh.pedorenko@gmail.com",
-                DonorType = DonorTypeEnum.Stranger
-            }
-        };
+            var i = 1;
+            GenFu.GenFu.Configure<Donor>()
+                .Fill(d => d.MiddleName).AsFirstName()
+                .Fill(d => d.Id, () => i++)
+                .Fill(d => d.BloodType)
+                .WithRandom(Enum.GetValues(typeof(BloodTypeEnum)).Cast<BloodTypeEnum?>())
+                .Fill(d => d.DonorType)
+                .WithRandom(Enum.GetValues(typeof(DonorTypeEnum)).Cast<DonorTypeEnum?>())
+                .Fill(d => d.RhesusType)
+                .WithRandom(Enum.GetValues(typeof(RhesusTypeEnum)).Cast<RhesusTypeEnum?>())
+                .Fill(d => d.Email, d => $"{d.FirstName}.{d.LastName}@gmail.com")
+                .Fill(d => d.BirthDate).AsPastDate()
+                .Fill(d => d.Notes).AsLoremIpsumSentences();
+
+            donors = A.ListOf<Donor>();
+        }
 
         public Donor Add(Donor item)
         {

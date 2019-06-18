@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GenFu;
 using UniDonors.Models;
 
 namespace UniDonors.Repositories
 {
     public class DonorOrganizationMemoryRepository : IRepository<DonorOrganization>
     {
-        private List<DonorOrganization> donorsOrganizations = new List<DonorOrganization>
+        private List<DonorOrganization> donorsOrganizations;
+
+        public DonorOrganizationMemoryRepository()
         {
-            new DonorOrganization { DonorId = 1, OrganizationId = 1 },
-            new DonorOrganization { DonorId = 1, OrganizationId = 2 },
-            new DonorOrganization { DonorId = 2, OrganizationId = 1 }
-        };
+            GenFu.GenFu.Configure<DonorOrganization>()
+                .Fill(od => od.DonorId).WithRandom(Enumerable.Range(1, 25).Select(o => (long) o))
+                .Fill(od => od.OrganizationId).WithRandom(Enumerable.Range(1, 25).Select(o => (long) o));
+            donorsOrganizations = A.ListOf<DonorOrganization>(10);
+        }
 
         public DonorOrganization Add(DonorOrganization item)
         {

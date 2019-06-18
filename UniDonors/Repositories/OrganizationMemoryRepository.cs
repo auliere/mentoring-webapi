@@ -2,35 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GenFu;
 using UniDonors.Models;
 
 namespace UniDonors.Repositories
 {
     public class OrganizationMemoryRepository : IRepository<Organization>
     {
-        private List<Organization> organizations = new List<Organization>
+        private List<Organization> organizations;
+
+        public OrganizationMemoryRepository()
         {
-            new Organization
-            {
-                Id = 1,
-                Address = "Zhylianska 75",
-                Description = "Good guys",
-                Email = "epam@epam.com",
-                Name = "EPAM Systems",
-                Phone = "+380123341234",
-                Webpage = "http://www.epam.com/"
-            },
-            new Organization
-            {
-                Id = 2,
-                Address = "Peremohy Ave 118",
-                Description = "Also good guys",
-                Email = "sss.ntuu.kpi@gmail.com",
-                Name = "SSS NTUU KPI",
-                Phone = "+380445255565",
-                Webpage = "http://www.sss.kpi.ua/"
-            },
-        };
+            int i = 1;
+            GenFu.GenFu.Configure<Organization>()
+                .Fill(o => o.Id, () => i++)
+                .Fill(o => o.Webpage, () => null);
+            organizations = A.ListOf<Organization>();
+        }
 
         public Organization Add(Organization item)
         {

@@ -7,7 +7,7 @@ namespace UniDonors.Models
 {
     public class Event
     {
-        public long ID { get; set; }
+        public long? Id { get; set; }
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
