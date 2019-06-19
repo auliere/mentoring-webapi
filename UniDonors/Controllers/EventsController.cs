@@ -10,7 +10,7 @@ using UniDonors.Repositories;
 namespace UniDonors.Controllers
 {
     [Route("api/[controller]")]
-    public class EventsController : Controller
+    public class EventsController : ControllerBase
     {
         private IRepository<Event> eventRepository;
 
@@ -19,14 +19,14 @@ namespace UniDonors.Controllers
             this.eventRepository = eventRepository;
         }
 
-        // GET api/organizations/1/events
+        // GET api/events
         [HttpGet]
         public IActionResult Get()
         {
             return Ok(eventRepository.Get());
         }
 
-        // GET api/organizations/1/events/5
+        // GET api/events/5
         [HttpGet("{id}")]
         public IActionResult Get(long id)
         {
@@ -39,7 +39,7 @@ namespace UniDonors.Controllers
             return Ok(ev);
         }
 
-        // POST api/organizations/1/events
+        // POST api/events
         [HttpPost]
         public IActionResult Post([FromBody]Event value)
         {
@@ -48,7 +48,7 @@ namespace UniDonors.Controllers
             return CreatedAtAction(nameof(Get), new { id = ev.Id }, ev);
         }
 
-        // PUT api/organizations/1/events/5
+        // PUT api/events/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody]Event value)
         {
@@ -61,7 +61,7 @@ namespace UniDonors.Controllers
             return CreatedAtAction(nameof(Get), new { id = ev.Id }, ev);
         }
 
-        // DELETE api/organizations/1/events/5
+        // DELETE api/events/5
         [HttpDelete("{id}")]
         public void Delete(long id)
         {
