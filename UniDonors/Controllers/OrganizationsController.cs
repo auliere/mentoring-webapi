@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using UniDonors.Models;
 using UniDonors.Repositories;
 
-namespace UniOrganizations.Controllers
+namespace UniDonors.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
     public class OrganizationsController : ControllerBase
     {
@@ -24,9 +22,9 @@ namespace UniOrganizations.Controllers
 
         // GET api/Organizations
         [HttpGet]
-        public IEnumerable<Organization> Get()
+        public IActionResult Get()
         {
-            return _organizationRepository.Get();
+            return Ok(_organizationRepository.Get().ToList());
         }
 
         // GET api/Organizations/5
@@ -45,8 +43,8 @@ namespace UniOrganizations.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Organization value)
         {
-            var Organization = _organizationRepository.Add(value);
-            return CreatedAtAction(nameof(Post), Organization);
+            var organization = _organizationRepository.Add(value);
+            return CreatedAtAction(nameof(Post), organization);
         }
 
         // PUT api/Organizations/5

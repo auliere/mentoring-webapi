@@ -10,6 +10,7 @@ using UniDonors.Repositories;
 
 namespace UniDonors.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
     public class DonorsController : ControllerBase
     {
@@ -24,13 +25,13 @@ namespace UniDonors.Controllers
 
         // GET api/donors
         [HttpGet]
-        public IEnumerable<Donor> Get(
-             [FromQuery(Name = "bloodType")]BloodTypeEnum? bloodType,
-             [FromQuery(Name = "rhesusType")]RhesusTypeEnum? rhesusType
-            )
+        public IActionResult Get(
+            [FromQuery(Name = "bloodType")]BloodTypeEnum? bloodType,
+            [FromQuery(Name = "rhesusType")]RhesusTypeEnum? rhesusType
+        )
         {
-            return _donorRepository.Get(d => (bloodType == null || d.BloodType == bloodType) &&
-                                             (rhesusType == null || d.RhesusType == rhesusType));
+            return Ok(_donorRepository.Get(d => (bloodType == null || d.BloodType == bloodType) &&
+                                             (rhesusType == null || d.RhesusType == rhesusType)).ToList());
         }
 
         // GET api/donors/5

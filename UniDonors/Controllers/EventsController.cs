@@ -9,6 +9,7 @@ using UniDonors.Repositories;
 
 namespace UniDonors.Controllers
 {
+    [ApiController]
     [Route("api/[controller]")]
     public class EventsController : ControllerBase
     {
@@ -23,7 +24,8 @@ namespace UniDonors.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(eventRepository.Get());
+            // return Ok(eventRepository.Get());
+            return Ok(eventRepository.Get().ToList());
         }
 
         // GET api/events/5

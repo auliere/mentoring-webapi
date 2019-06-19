@@ -8,7 +8,7 @@ using UniDonors.Repositories;
 
 namespace UniDonors.Controllers
 {
-
+    [ApiController]
     [Route("api")]
     public class DonorOrganizationController: ControllerBase
     {
@@ -37,7 +37,7 @@ namespace UniDonors.Controllers
                 .ToList();
             var orgs = _organizationRepository
                 .Get(org => orgIds.Contains(org.Id.Value));
-            return Ok(orgs);
+            return Ok(orgs.ToList());
         }
 
         [HttpGet("organizations/{orgId}/donors")]

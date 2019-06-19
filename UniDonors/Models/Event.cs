@@ -14,5 +14,6 @@ namespace UniDonors.Models
         public string Description { get; set; }
         public BloodTypeEnum? BloodTypeID { get; set; }
         public RhesusTypeEnum? RhesusID { get; set; }
+
     }
 }
