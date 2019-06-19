@@ -21,37 +21,51 @@ namespace UniDonors.Controllers
 
         // GET api/organizations/1/events
         [HttpGet]
-        public IEnumerable<Event> Get()
+        public IActionResult Get()
         {
-            eventRepository.Get();
+            return Ok(eventRepository.Get());
         }
 
         // GET api/organizations/1/events/5
         [HttpGet("{id}")]
-        public IEnumerable<Event> Get(long id)
+        public IActionResult Get(long id)
         {
-            return eventRepository.Get(e => e.Id == id);
+            var ev = eventRepository.Get(e => e.Id == id);
+            if (ev == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(ev);
         }
 
         // POST api/organizations/1/events
         [HttpPost]
-        public void Post([FromBody]Event value)
+        public IActionResult Post([FromBody]Event value)
         {
-            throw new NotImplementedException();
+            value.Id = null;
+            var ev = eventRepository.Add(value);
+            return CreatedAtAction(nameof(Get), new { id = ev.Id }, ev);
         }
 
         // PUT api/organizations/1/events/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Event value)
+        public IActionResult Put(int id, [FromBody]Event value)
         {
-            throw new NotImplementedException();
+            value.Id = id;
+            var ev = eventRepository.Edit(value);
+            if (ev == null)
+            {
+                return NotFound();
+            }
+            return CreatedAtAction(nameof(Get), new { id = ev.Id }, ev);
         }
 
         // DELETE api/organizations/1/events/5
         [HttpDelete("{id}")]
         public void Delete(long id)
         {
-            throw new NotImplementedException();
+            eventRepository.Remove(e => e.Id == id);
         }
 
     }
