@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -28,11 +29,11 @@ namespace UniDonors.Controllers
             return Ok(eventRepository.Get().ToList());
         }
 
-        // GET api/events/5
-        [HttpGet("{id}")]
-        public IActionResult Get(long id)
+        // GET api/events/event5
+        [HttpGet("{id:eventId}")]
+        public IActionResult Get(string id)
         {
-            var ev = eventRepository.Get(e => e.Id == id);
+            var ev = eventRepository.Get(e => e.Id == id).SingleOrDefault();
             if (ev == null)
             {
                 return NotFound();
@@ -50,9 +51,9 @@ namespace UniDonors.Controllers
             return CreatedAtAction(nameof(Get), new { id = ev.Id }, ev);
         }
 
-        // PUT api/events/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]Event value)
+        // PUT api/events/event5
+        [HttpPut("{id:eventId}")]
+        public IActionResult Put(string id, [FromBody]Event value)
         {
             value.Id = id;
             var ev = eventRepository.Edit(value);
@@ -63,9 +64,9 @@ namespace UniDonors.Controllers
             return CreatedAtAction(nameof(Get), new { id = ev.Id }, ev);
         }
 
-        // DELETE api/events/5
-        [HttpDelete("{id}")]
-        public void Delete(long id)
+        // DELETE api/events/event5
+        [HttpDelete("{id:eventId}")]
+        public void Delete(string id)
         {
             eventRepository.Remove(e => e.Id == id);
         }

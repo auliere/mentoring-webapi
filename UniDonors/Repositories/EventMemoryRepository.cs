@@ -11,12 +11,13 @@ namespace UniDonors.Repositories
     public class EventMemoryRepository : IRepository<Event>
     {
         private List<Event> events;
+        private long indexer = 1;
+        private string idFormat = "event{0}";
 
         public EventMemoryRepository()
         {
-            long i = 1;
             GenFu.GenFu.Configure<Event>()
-                .Fill(e => e.Id, i++);
+                .Fill(e => e.Id, () => { return String.Format(idFormat, indexer++); });
             events = A.ListOf<Event>();
         }
 
@@ -27,7 +28,7 @@ namespace UniDonors.Repositories
 
         public IQueryable<Event> Get(Func<Event, bool> predicate)
         {
-            throw new NotImplementedException();
+            return events.Where(predicate).AsQueryable();
         }
 
         public bool Any(Func<Event, bool> predicate)
@@ -48,7 +49,7 @@ namespace UniDonors.Repositories
 
         public Event Add(Event item)
         {
-            item.Id = item.Id ?? events.Max(d => d.Id) + 1;
+            item.Id = item.Id ?? String.Format(idFormat, indexer++);
             events.Add(item);
             return item;
         }
