@@ -34,6 +34,10 @@ namespace UniDonors
         options.InputFormatters.Add(new XmlSerializerInputFormatter());
         options.OutputFormatters.Add(new XmlSerializerOutputFormatter());
       });
+      services.AddRouting(options =>
+      {
+        options.ConstraintMap.Add()
+      })
 
       services.AddSingleton<IRepository<Donor>, DonorMemoryRepository>();
       services.AddSingleton<IRepository<Organization>, OrganizationMemoryRepository>();
