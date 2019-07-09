@@ -10,8 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using UniDonors.Models;
-using UniDonors.Repositories;
+using UniDonors.DataLayer.Models;
+using UniDonors.DataLayer.Repositories;
 using Swashbuckle.AspNetCore.Swagger;
 using UniDonors.Infrastructure;
 
@@ -42,7 +42,6 @@ namespace UniDonors
                 o.AssumeDefaultVersionWhenUnspecified = true;
                 o.DefaultApiVersion = new ApiVersion(1, 0);
             });
-
             services.AddRouting(options => { options.ConstraintMap.Add("eventId", typeof(EventIdRouteConstraint)); });
 
             services.AddSingleton<IRepository<Donor>, DonorMemoryRepository>();

@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniDonors", "UniDonors\UniDonors.csproj", "{741F29A7-B595-4098-8B7C-6711EA9286E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniDonors", "UniDonors\UniDonors.csproj", "{741F29A7-B595-4098-8B7C-6711EA9286E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniDonors.DataLayer", "UniDonors.DataLayer\UniDonors.DataLayer.csproj", "{314C3E8D-C1C6-44D2-BB9A-165C2099DA8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniDonors.Contracts", "UniDonors.Contracts\UniDonors.Contracts.csproj", "{7885DAD5-88A6-43F8-9185-AADF44D6871B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{741F29A7-B595-4098-8B7C-6711EA9286E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{741F29A7-B595-4098-8B7C-6711EA9286E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{741F29A7-B595-4098-8B7C-6711EA9286E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{314C3E8D-C1C6-44D2-BB9A-165C2099DA8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{314C3E8D-C1C6-44D2-BB9A-165C2099DA8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{314C3E8D-C1C6-44D2-BB9A-165C2099DA8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{314C3E8D-C1C6-44D2-BB9A-165C2099DA8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7885DAD5-88A6-43F8-9185-AADF44D6871B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7885DAD5-88A6-43F8-9185-AADF44D6871B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7885DAD5-88A6-43F8-9185-AADF44D6871B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7885DAD5-88A6-43F8-9185-AADF44D6871B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

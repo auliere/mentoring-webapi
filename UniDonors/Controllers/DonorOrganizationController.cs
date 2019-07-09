@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UniDonors.Models;
-using UniDonors.Repositories;
+using UniDonors.DataLayer.Models;
+using UniDonors.DataLayer.Repositories;
 
 namespace UniDonors.Controllers
 {

@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using UniDonors.Models;
-using UniDonors.Repositories;
+using UniDonors.DataLayer.Models;
+using UniDonors.DataLayer.Repositories;
 
 namespace UniDonors.Controllers
 {

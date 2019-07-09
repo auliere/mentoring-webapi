@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace UniDonors.Models
+namespace UniDonors.DataLayer.Models
 {
     public enum DonorTypeEnum
     {

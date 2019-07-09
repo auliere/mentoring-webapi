@@ -2,8 +2,8 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using UniDonors.Models;
-using UniDonors.Repositories;
+using UniDonors.DataLayer.Models;
+using UniDonors.DataLayer.Repositories;
 
 namespace UniDonors.Controllers
 {

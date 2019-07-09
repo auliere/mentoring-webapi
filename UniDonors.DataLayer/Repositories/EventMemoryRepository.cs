@@ -4,9 +4,9 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 using GenFu;
-using UniDonors.Models;
+using UniDonors.DataLayer.Models;
 
-namespace UniDonors.Repositories
+namespace UniDonors.DataLayer.Repositories
 {
     public class EventMemoryRepository : IRepository<Event>
     {

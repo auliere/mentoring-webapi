@@ -5,8 +5,8 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using UniDonors.Models;
-using UniDonors.Repositories;
+using UniDonors.DataLayer.Models;
+using UniDonors.DataLayer.Repositories;
 
 namespace UniDonors.Controllers
 {
